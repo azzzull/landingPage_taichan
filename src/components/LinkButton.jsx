@@ -1,7 +1,9 @@
 import { ChevronRight } from 'lucide-react'
 
-const isExternalUrl = (url) => {
+const isOpenableUrl = (url) => {
   if (!url || /x{4,}/i.test(url)) return false
+
+  if (url.startsWith('/')) return true
 
   try {
     const { protocol } = new URL(url)
@@ -12,7 +14,8 @@ const isExternalUrl = (url) => {
 }
 
 export default function LinkButton({ label, url, icon: Icon, logo, variant = '' }) {
-  const isAvailable = isExternalUrl(url)
+  const isAvailable = isOpenableUrl(url)
+  const opensInNewTab = Boolean(url && !url.startsWith('/'))
   const className = `link-button${variant ? ` link-button--${variant}` : ''}`
 
   const content = (
@@ -50,9 +53,11 @@ export default function LinkButton({ label, url, icon: Icon, logo, variant = '' 
     <a
       className={className}
       href={url}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={`${label} (membuka tab baru)`}
+      target={opensInNewTab ? '_blank' : undefined}
+      rel={opensInNewTab ? 'noopener noreferrer' : undefined}
+      aria-label={
+        opensInNewTab ? `${label} (membuka tab baru)` : `${label} (membuka halaman)`
+      }
     >
       {content}
     </a>

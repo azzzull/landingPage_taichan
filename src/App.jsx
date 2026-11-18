@@ -1,11 +1,26 @@
+import { useEffect } from "react";
 import brandLogo from "./assets/brand-logo.png";
 import paperTearTop from "./assets/paper-tear-top.svg";
 import paperTearBottom from "./assets/paper-tear-bottom.svg";
 import Footer from "./components/Footer";
 import LinkButton from "./components/LinkButton";
+import GalleryView from "./components/GalleryView";
 import { linkItems } from "./config/links";
+import { getGalleryFromSearch } from "./config/galleries";
 
 export default function App() {
+    const gallery = getGalleryFromSearch(window.location.search);
+
+    useEffect(() => {
+        document.body.classList.toggle("gallery-open", Boolean(gallery));
+
+        return () => document.body.classList.remove("gallery-open");
+    }, [gallery]);
+
+    if (gallery) {
+        return <GalleryView gallery={gallery} />;
+    }
+
     return (
         <div className="bio-page">
             <img
