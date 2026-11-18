@@ -13,7 +13,7 @@ import { getGalleryUrl } from "./galleries";
 // Ganti nilai kosong di bawah ini dengan URL resmi. URL yang kosong akan
 // ditampilkan nonaktif agar pengunjung tidak diarahkan ke halaman yang salah.
 export const linkConfig = {
-    gofoodUrl: "",
+    // gofoodUrl: "",
     grabfoodUrl: "https://app.grab.com/s/JaYWhe7F",
     menuUrl: getGalleryUrl("menu"),
     mapsUrl: "https://maps.app.goo.gl/gv7hm6QHBNhF2t8h9?g_st=ic",
@@ -29,13 +29,13 @@ const whatsappUrl = linkConfig.whatsappNumber
     : "";
 
 export const linkItems = [
-    {
-        label: "Pesan di GoFood",
-        url: linkConfig.gofoodUrl,
-        icon: Bike,
-        logo: { src: gofoodLogo, className: "brand-mark--gofood" },
-        variant: "gofood",
-    },
+    // {
+    //     label: "Pesan di GoFood",
+    //     url: linkConfig.gofoodUrl,
+    //     icon: Bike,
+    //     logo: { src: gofoodLogo, className: "brand-mark--gofood" },
+    //     variant: "gofood",
+    // },
     {
         label: "Pesan di GrabFood",
         url: linkConfig.grabfoodUrl,
